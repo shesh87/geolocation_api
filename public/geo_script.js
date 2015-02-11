@@ -8,8 +8,7 @@ $('.geo').on('click', function() {
 function success(position) {
   var latitude = position.coords.latitude;
   var longitude = position.coords.longitude;
-  var src = 'https://maps.googleapis.com/maps/api/staticmap?zoom=13&size=600x300&center=' + latitude + ',' + longitude;
-  $('.map').html('<img src="' + src + '"/>');
+  mapImage(latitude, longitude);
 }
 
 function error(n) {
@@ -23,8 +22,7 @@ function error(n) {
 $('.get-geo').on('click', function() {
   var latitude = $('input#lat').val();
   var longitude = $('input#long').val();
-  var src = 'https://maps.googleapis.com/maps/api/staticmap?zoom=7&size=600x300&center=' + latitude + ',' + longitude;
-  $('.map').html('<img src="' + src + '"/>');
+  mapImage(latitude, longitude);
 });
 
 
@@ -42,10 +40,26 @@ $('.city').on('click', function() {
     console.log(data.query.results.Result.latitude);
     var lat = data.query.results.Result.latitude;
     var long = data.query.results.Result.longitude;
-    var src = 'https://maps.googleapis.com/maps/api/staticmap?zoom=13&size=600x300&center=' + lat + ',' + long;
-  $('.map').html('<img src="' + src + '"/>');
+    mapImage(lat, long);
   }).error(function(error) {
     console.log(error);
   });
   
 });
+
+
+
+// function mapImage(lat, long) {
+//   var src = 'https://maps.googleapis.com/maps/api/staticmap?zoom=9&size=600x300&center=' + lat + ',' + long;
+//   $('.map').html('<img src="' + src + '"/>');
+// }
+
+function mapImage(lat, long) {
+  var src = 'https://maps.googleapis.com/maps/api/staticmap?zoom=9&size=600x300&center=' + lat + ',' + long;
+  $('.map').attr('src', src);
+  console.log(src);
+}
+
+
+
+
