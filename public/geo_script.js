@@ -2,8 +2,6 @@
 $('.geo').on('click', function() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(success, error);
-    console.log(navigator.geolocation);
-    console.log("end geolocation");
   }
 });
 
@@ -19,3 +17,12 @@ function error(n) {
   $('.error_msg').text("Could not locate your location.");
 }
 
+
+
+//Tracks given coordinates on map
+$('.get-geo').on('click', function() {
+  var latitude = $('input#lat').val();
+  var longitude = $('input#long').val();
+  var src = 'https://maps.googleapis.com/maps/api/staticmap?zoom=7&size=600x300&center=' + latitude + ',' + longitude;
+  $('.map').html('<img src="' + src + '"/>');
+});
